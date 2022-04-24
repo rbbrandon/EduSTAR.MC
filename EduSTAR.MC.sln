@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduSTAR.MC.API", "EduSTAR.MC.API\EduSTAR.MC.API.csproj", "{8E406606-AB37-44A6-B40A-600B780C1582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduSTAR.MC.TestApp", "EduSTAR.MC.TestApp\EduSTAR.MC.TestApp.csproj", "{CB5612E2-F6BA-4E27-9F5E-A51B76B2A8A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E406606-AB37-44A6-B40A-600B780C1582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E406606-AB37-44A6-B40A-600B780C1582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E406606-AB37-44A6-B40A-600B780C1582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E406606-AB37-44A6-B40A-600B780C1582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB5612E2-F6BA-4E27-9F5E-A51B76B2A8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB5612E2-F6BA-4E27-9F5E-A51B76B2A8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB5612E2-F6BA-4E27-9F5E-A51B76B2A8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB5612E2-F6BA-4E27-9F5E-A51B76B2A8A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB1D61EE-A499-44EF-99A4-06066AEF32FE}
+	EndGlobalSection
+EndGlobal
