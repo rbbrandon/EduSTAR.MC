@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Authentication;
+using System.Text;
 using System.Threading.Tasks;
-using EduSTAR.MC.API.Exceptions;
+using EduSTAR.MC.API.Models;
 using EduSTAR.MC.API.Validators;
 using static EduSTAR.MC.API.Constants;
 
@@ -17,7 +20,7 @@ namespace EduSTAR.MC.API
 
         public static void Connect(string username, string password) {
             if (!CredentialValidator.IsValidCredentials(username, password)) {
-                throw new InvalidCredentialsException("Required credentials are missing. Please provide a valid username and password.");
+                throw new InvalidCredentialException("Required credentials are missing. Please provide a valid username and password.");
             }
 
             Globals.InitialiseHttpClient();
@@ -25,16 +28,18 @@ namespace EduSTAR.MC.API
             var connectionRequestBody = BuildConnectionRequestBody(username, password);
 
             if (TryLogin(connectionRequestBody)) {
+                Globals.InitialiseUserDetails();
                 return;
             }
 
             Globals.InitialiseHttpClient(username, password);
 
             if (TryLogin(connectionRequestBody)) {
+                Globals.InitialiseUserDetails();
                 return;
             }
 
-            throw new InvalidCredentialsException(
+            throw new InvalidCredentialException(
                 "Connection failed. Please ensure that a valid username and password is specified.");
         }
 
