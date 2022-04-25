@@ -1,8 +1,8 @@
-﻿using System.IO;
+﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Xml.Serialization;
 using EduSTAR.MC.API.Models;
+using EduSTAR.MC.API.Utilities;
 using EduSTAR.MC.API.Validators;
 using static EduSTAR.MC.API.Constants;
 
@@ -45,27 +45,7 @@ namespace EduSTAR.MC.API
         }
 
         internal static void InitialiseUserDetails() {
-            var responseTask = HttpClient.GetAsync($"{EDUSTAR_MC_URI.AbsoluteUri}/GetUser");
-            var responseResult = responseTask.Result;
-
-            if (responseResult.StatusCode != HttpStatusCode.OK) {
-                throw new HttpRequestException($"Could not access \"{responseResult.Headers.Location.AbsoluteUri}\" ({responseResult.StatusCode}).");
-            }
-
-            var responseContent = responseResult.Content;
-            var responseContentTask = responseContent.ReadAsStringAsync();
-            var result = responseContentTask.Result;
-            
-            CurrentUserData = DeserialiseCurrentUserData(result);
-        }
-
-        private static CurrentUserData DeserialiseCurrentUserData(string xmlString) {
-            var serializer = new XmlSerializer(typeof(CurrentUserData));
-
-            using (var reader = new StringReader(xmlString)) {
-                var deserialisedObject = serializer.Deserialize(reader);
-                return deserialisedObject as CurrentUserData;
-            }
+            CurrentUserData = Web.GetContentAsObject<CurrentUserData>($"{EDUSTAR_MC_URI}/GetUser");
         }
     }
 }
