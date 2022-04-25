@@ -46,5 +46,7 @@ namespace EduSTAR.MC.API.Models
         [XmlArrayItem(Namespace = "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
             IsNullable = false)]
         public string[] StaticLinks { get; set; }
+
+        public override string ToString() => DisplayName;
     }
 }
