@@ -9,10 +9,10 @@ namespace EduSTAR.MC.API.Models
     [XmlType(AnonymousType = true, Namespace = "http://schemas.datacontract.org/2004/07/service_core")]
     [XmlRoot(ElementName = "ArrayOfSchool", Namespace = "http://schemas.datacontract.org/2004/07/service_core",
         IsNullable = false)]
-    public class SchoolArray
+    public class ArrayOfSchool
     {
         [XmlElement(ElementName = "School")]
-        public SchoolItem[] Items { get; set; }
+        public School[] Items { get; set; }
 
         [XmlIgnore] public int Count => Items.Length;
         [XmlIgnore] public int Length => Items.Length;

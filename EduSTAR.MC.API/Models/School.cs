@@ -7,7 +7,7 @@ namespace EduSTAR.MC.API.Models
     [Serializable]
     [DesignerCategory("code")]
     [XmlType(TypeName = "School", AnonymousType = true, Namespace = "http://schemas.datacontract.org/2004/07/service_core")]
-    public class SchoolItem
+    public class School
     {
         public string Region { get; set; }
         public string SchoolId { get; set; }
