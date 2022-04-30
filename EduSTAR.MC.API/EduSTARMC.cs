@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Security.Authentication;
-using System.Text;
-using System.Threading.Tasks;
 using EduSTAR.MC.API.Models;
+using EduSTAR.MC.API.Utilities;
 using EduSTAR.MC.API.Validators;
 using static EduSTAR.MC.API.Constants;
 
@@ -20,7 +18,8 @@ namespace EduSTAR.MC.API
 
         public static void Connect(string username, string password) {
             if (!CredentialValidator.IsValidCredentials(username, password)) {
-                throw new InvalidCredentialException("Required credentials are missing. Please provide a valid username and password.");
+                throw new InvalidCredentialException(
+                    "Required credentials are missing. Please provide a valid username and password.");
             }
 
             Globals.InitialiseHttpClient();
@@ -61,7 +60,23 @@ namespace EduSTAR.MC.API
             var response = Globals.HttpClient.PostAsync(EDUSTAR_LOGIN_ENDPOINT, connectionRequestBody);
             var responseResult = response.Result;
 
-            return (responseResult.StatusCode == HttpStatusCode.OK);
+            return responseResult.StatusCode == HttpStatusCode.OK;
+        }
+
+        public static void SetDefaultSchool(SchoolItem schoolItem) {
+            SetDefaultSchool(schoolItem.SchoolId);
+        }
+
+        public static void SetDefaultSchool(int schoolId) {
+            SetDefaultSchool(schoolId.ToString());
+        }
+
+        public static void SetDefaultSchool(string schoolId) {
+            Globals.SelectedSchoolId = schoolId;
+        }
+
+        public static SchoolArray GetSchoolArray() {
+            return Web.GetContentAsObject<SchoolArray>($"{EDUSTAR_MC_URI}/GetAllSchools");
         }
     }
 }

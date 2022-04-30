@@ -1,11 +1,27 @@
 ﻿using System.Net;
 using System.Net.Mime;
 using System.Security;
+using System.Threading.Channels;
 using EduSTAR.MC.API;
 
 var credentials = GetCredentials();
 
+Console.WriteLine("Connecting to the eduSTAR Management Console...");
 EduSTARMC.Connect(credentials);
+Console.WriteLine("  Connection succeeded.");
+
+Console.WriteLine("Getting a list of schools...");
+var schoolArray = EduSTARMC.GetSchoolArray();
+Console.Write($"  Found {schoolArray.Count} school");
+if (schoolArray.Count != 1) {
+    Console.Write("s");
+}
+Console.WriteLine(".");
+
+Console.WriteLine("Setting the default school ID...");
+EduSTARMC.SetDefaultSchool(8716);
+Console.WriteLine("  Default school ID set.");
+
 
 Exit();
 

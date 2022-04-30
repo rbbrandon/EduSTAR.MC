@@ -10,6 +10,8 @@ namespace EduSTAR.MC.API
 {
     internal static class Globals
     {
+        private static string _selectedSchoolId;
+
         internal static HttpClient HttpClient { get; private set; }
         internal static CurrentUserData CurrentUserData { get; private set; }
 
@@ -46,6 +48,17 @@ namespace EduSTAR.MC.API
 
         internal static void InitialiseUserDetails() {
             CurrentUserData = Web.GetContentAsObject<CurrentUserData>($"{EDUSTAR_MC_URI}/GetUser");
+        }
+
+        internal static string SelectedSchoolId {
+            get => _selectedSchoolId;
+            set {
+                if (!SchoolValidator.IsValidSchoolId(value)) {
+                    throw new ArgumentException($"The value provided ({value}) is not in the user's list of schools.");
+                }
+
+                _selectedSchoolId = value;
+            }
         }
     }
 }

@@ -8,9 +8,4 @@
     <None Remove="Constants.cs~RF8c016e.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Enums\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
 </Project>
