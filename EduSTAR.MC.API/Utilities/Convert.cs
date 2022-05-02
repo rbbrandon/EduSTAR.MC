@@ -10,10 +10,10 @@ namespace EduSTAR.MC.API.Utilities
     {
         internal static T XmlStringToObject<T>(string xmlString) where T : class {
             var serializer = new XmlSerializer(typeof(T));
-
+            
             using (var reader = new StringReader(xmlString)) {
-                var deserialisedObject = serializer.Deserialize(reader);
-                return (T)deserialisedObject;
+                var deserializedObject = serializer.Deserialize(reader);
+                return (T)deserializedObject;
             }
         }
     }
